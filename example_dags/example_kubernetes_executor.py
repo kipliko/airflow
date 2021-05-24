@@ -75,8 +75,27 @@ with DAG(
     # Use the zip binary, which is only found in this special docker image
     two_task = PythonOperator(
         task_id="two_task",
-        python_callable=assert_zip_binary,
+        python_callable=print_stuff,
         executor_config={"KubernetesExecutor": {"image": "pscarpino/airflow"}},
+    )
+
+    sidecar_task = PythonOperator(
+        task_id="two_task",
+        python_callable=print_stuff,
+        executor_config={
+            "pod_override": k8s.V1Pod(
+                spec=k8s.V1PodSpec(
+                    containers=[
+                        k8s.V1Container(
+                            name="sidecar",
+                            image="ubuntu",
+                            args=["echo \"retrieved from mount\""],
+                            command=["bash", "-cx"]
+                        ),
+                    ],
+                )
+            ),
+        },
     )
 
     # Limit resources on this operator/task with node affinity & tolerations
@@ -100,4 +119,6 @@ with DAG(
         executor_config={"KubernetesExecutor": {"labels": {"foo": "bar"}}},
     )
 
-    start_task >> [one_task, two_task, three_task, four_task]
+    #start_task >> [one_task, sidecar_task, two_task, three_task, four_task]
+    start_task
+    

@@ -41,19 +41,19 @@ default_args = {
 dag = DAG("example_kubernetes_executor_paolo", default_args=default_args, schedule_interval=timedelta(1), tags=['example', 'example2'])
 
 
-python_command = """
-    print('Hello, world!')
-"""
+def process(p1):
+    print(p1)
+    return 'done'
 
 start_task = PythonOperator(
     task_id="start_task", 
-    python_callable=python_command, 
+    python_callable=process, 
     dag=dag
 )
 
 one_task = PythonOperator(
     task_id="one_task",
-    python_callable=python_command,
+    python_callable=process,
     executor_config={"KubernetesExecutor": {"image": "ubuntu"}},
     dag=dag
 )

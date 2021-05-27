@@ -18,9 +18,8 @@ default_args = {
     "retry_delay": timedelta(minutes=5)
 }
 
-dag = DAG("tutorial", default_args=default_args, schedule_interval=timedelta(1))
 with DAG(
-    'tutorial',
+    'tuto',
     default_args=default_args,
     description='A simple tutorial DAG',
     schedule_interval=timedelta(days=1),

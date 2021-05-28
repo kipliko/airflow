@@ -19,7 +19,7 @@ default_args = {
 }
 
 with DAG(
-    'tuto',
+    dag_id='tuto',
     default_args=default_args,
     description='A simple tutorial DAG',
     schedule_interval=timedelta(days=1),

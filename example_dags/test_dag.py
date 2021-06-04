@@ -4,13 +4,6 @@ from airflow.operators.python_operator import PythonOperator
 
 from datetime import datetime
 
-from kubernetes.client.models.v1_container_image import V1ContainerImage
-
-def names(self, names):
-    self._names = names
-    V1ContainerImage.names = V1ContainerImage.names.setter(names)
-
-
 default_args = {
     'start_date': datetime(2020, 1, 1),
     'owner': 'Airflow',

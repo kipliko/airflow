@@ -7,12 +7,6 @@ from airflow.operators.bash_operator import BashOperator
 from datetime import datetime, timedelta
 from airflow.utils.dates import days_ago
 
-from kubernetes.client.models.v1_container_image import V1ContainerImage
-
-def names(self, names):
-    self._names = names
-    V1ContainerImage.names = V1ContainerImage.names.setter(names)
-
 default_args = {
     "owner": "airflow",
     "depends_on_past": False,

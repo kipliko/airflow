@@ -21,19 +21,27 @@ dag = DAG(
 with dag:
     # This task loads the CSV files from dbt/data into the local postgres database for the purpose of this demo.
     # In practice, we'd usually expect the data to have already been loaded to the database.
-    dbt_seed = BashOperator(
-        task_id="dbt_seed",
-        bash_command=f"dbt seed --profiles-dir {DBT_PROJECT_DIR} --project-dir {DBT_PROJECT_DIR}"
+    dbt_compile = BashOperator(
+        task_id="dbt_compile",
+        bash_command=f"dbt compile --profiles-dir {DBT_PROJECT_DIR} --project-dir {DBT_PROJECT_DIR}"
     )
-
-    dbt_run = BashOperator(
-        task_id="dbt_run",
-        bash_command=f"dbt run --profiles-dir {DBT_PROJECT_DIR} --project-dir {DBT_PROJECT_DIR}"
+    dbt_debug = BashOperator(
+        task_id="dbt_compile",
+        bash_command=f"dbt debug --profiles-dir {DBT_PROJECT_DIR} --project-dir {DBT_PROJECT_DIR}"
     )
+    #dbt_seed = BashOperator(
+    #    task_id="dbt_seed",
+    #    bash_command=f"dbt seed --profiles-dir {DBT_PROJECT_DIR} --project-dir {DBT_PROJECT_DIR}"
+    #)
 
-    dbt_test = BashOperator(
-        task_id="dbt_test",
-        bash_command=f"dbt test --profiles-dir {DBT_PROJECT_DIR} --project-dir {DBT_PROJECT_DIR}"
-    )
+    #dbt_run = BashOperator(
+    #    task_id="dbt_run",
+    #    bash_command=f"dbt run --profiles-dir {DBT_PROJECT_DIR} --project-dir {DBT_PROJECT_DIR}"
+    #)
 
-    dbt_seed >> dbt_run >> dbt_test
+    #dbt_test = BashOperator(
+    #    task_id="dbt_test",
+    #    bash_command=f"dbt test --profiles-dir {DBT_PROJECT_DIR} --project-dir {DBT_PROJECT_DIR}"
+    #)
+
+    dbt_compile >> dbt_debug

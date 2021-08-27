@@ -1,0 +1,131 @@
+
+version: 2
+
+models:
+    - name: test_paolo_mod
+
+    - name: global_brazil_ceara__payment__mod
+      tests:
+        - expect_table_columns_to_match_list:
+              column_list: ["cdc_contract_id", "cdc_customer_id", "cdc_bill_id", "sds_country", "sds_status_local", "sds_status_global", "fln_fractional_payment", "cdc_fractional_payment_id", "sds_enel_company", "sds_segment", "sds_market", "sds_commodity", "sds_concept_l1", "cdc_concept_l2", "qty_amount_concept_l2", "qty_total_amount_payed", "dtc_dt_customer_payment", "dtc_dt_batch_payment", "dtc_dt_accounting", "cdc_id_collection_channel", "sds_collection_channel", "cdc_id_collection_partner", "cdc_collection_partner", "cdc_id_deposit"]
+      columns:
+          - name: cdc_contract_id
+            description: "cdc_contract_id"
+            tests:
+                - expect_column_values_to_be_in_type_list_paolo:
+                    column_type_list: ['varchar(256)', 'character varying(256)']
+                    table_name: 'global_brazil_ceara.bt_global_payment_brazil_ceara'
+          - name: qty_amount_concept_l2
+            description: "qty_amount_concept_l2"
+            tests:
+                - expect_column_values_to_be_in_type_list_paolo:
+                    column_type_list: ['number(10,2)', 'numeric(10,2)']
+                    table_name: 'global_brazil_ceara.bt_global_payment_brazil_ceara'
+          - name: fln_fractional_payment
+            description: "fln_fractional_payment"
+            tests:
+                - expect_column_values_to_be_in_type_list_paolo:
+                    column_type_list: ['boolean']
+                    table_name: 'global_brazil_ceara.bt_global_payment_brazil_ceara'
+
+    - name: global_brazil_goias__billing__mod
+      tests:
+        - expect_table_columns_to_match_list:
+              column_list: ["cdc_contract_id", "cdc_customer_id", "cdc_pod_id", "cdc_bill_id", "cdc_pseudo_bill_id", "sds_country", "sds_contract_status", "sds_customer_status", "sds_segment_l1", "qty_factoring", "qty_installmentplan", "sxt_customerdisconnectivitiy", "sxt_distribution_company", "sds_sales_channel", "sds_enel_company", "sds_document_type", "sxt_status_local", "sds_status_global", "sds_segment", "sds_market", "sds_commodity", "qty_energy_billed", "qty_power_billed", "sds_unity_measure", "dtc_dt_reading_prev", "dtc_dt_reading_act", "dtc_dt_bill_from", "dtc_dt_bill_to", "dtc_dt_issue_date", "dtc_dt_first_due", "dtc_dt_second_due", "sds_voltage_level", "sds_tariff_l1", "sxt_tariff_l2", "sds_concept_l1", "sxt_concept_l2", "qty_amount_concept_l1", "qty_amount_concept_l1_tax", "qty_amount_concept_l1_total", "qty_amount_billed_without_tax_first_due_date", "qty_amount_billed_total_first_due_date", "qty_amount_billed_without_tax_second_due_date", "qty_amount_billed_total_second_due_date", "fln_e_bill", "sxt_typeofdelivery"]                    
+      columns:
+          - name: cdc_contract_id
+            description: "cdc_contract_id"
+            
+
+
+
+
+
+    # - name: global_billing_chile_mod
+    #   description: '{{ doc("peru_doc_payment") }}'
+    #   tests:
+    #     - expect_table_columns_to_match_list:
+    #           column_list: ["cdc_contract_id", "cdc_customer_id", "cdc_pod_id", "cdc_bill_id", "cdc_pseudo_bill_id", "sds_country", "sds_country_region", "sds_contract_status", "sds_customer_status", "sds_segment_l1", "qty_factoring", "qty_installmentplan", "sxt_customerdisconnectivitiy", "sxt_distribution_company", "sds_sales_channel", "sds_enel_company", "sds_document_type", "sxt_status_local", "sds_status_global", "sds_segment", "sds_market", "sds_commodity", "qty_energy_billed", "qty_power_billed", "sds_unity_measure", "dtc_dt_reading_prev", "dtc_dt_reading_act", "dtc_dt_bill_from", "dtc_dt_bill_to", "dtc_dt_issue_date", "dtc_dt_first_due", "dtc_dt_second_due", "sds_voltage_level", "sds_tariff_l1", "sxt_tariff_l2", "sds_concept_l1", "sxt_concept_l2", "qty_amount_concept_l1", "qty_amount_concept_l1_tax", "qty_amount_concept_l1_total", "qty_amount_billed_without_tax_first_due_date", "qty_amount_billed_total_first_due_date", "qty_amount_billed_without_tax_second_due_date", "qty_amount_billed_total_second_due_date", "fln_e_bill", "sxt_typeofdelivery"]
+    #   columns:
+    #       - name: cdc_contract_id
+    #         description: "cdc_contract_id"
+    #         tests:
+    #             - expect_column_values_to_be_in_type_list:
+    #                 column_type_list: [varchar(256)]
+    # - name: global_billing_colombia_mod
+    #   tests:
+    #     - expect_table_columns_to_match_list:
+    #           column_list: ["cdc_contract_id", "cdc_customer_id", "cdc_pod_id", "cdc_bill_id", "cdc_pseudo_bill_id", "sds_country", "sds_country_region", "sds_contract_status", "sds_customer_status", "sds_segment_l1", "qty_factoring", "qty_installmentplan", "sxt_customerdisconnectivitiy", "sxt_distribution_company", "sds_sales_channel", "sds_enel_company", "sds_document_type", "sxt_status_local", "sds_status_global", "sds_segment", "sds_market", "sds_commodity", "qty_energy_billed", "qty_power_billed", "sds_unity_measure", "dtc_dt_reading_prev", "dtc_dt_reading_act", "dtc_dt_bill_from", "dtc_dt_bill_to", "dtc_dt_issue_date", "dtc_dt_first_due", "dtc_dt_second_due", "sds_voltage_level", "sds_tariff_l1", "sxt_tariff_l2", "sds_concept_l1", "sxt_concept_l2", "qty_amount_concept_l1", "qty_amount_concept_l1_tax", "qty_amount_concept_l1_total", "qty_amount_billed_without_tax_first_due_date", "qty_amount_billed_total_first_due_date", "qty_amount_billed_without_tax_second_due_date", "qty_amount_billed_total_second_due_date", "fln_e_bill", "sxt_typeofdelivery"]
+    #   columns:
+    #       - name: cdc_contract_id
+    #         description: "cdc_contract_id"
+    #         tests:
+    #             - expect_column_values_to_be_in_type_list:
+    #                 column_type_list: [varchar(256)]
+
+
+      # columns:
+      #     - name: id_bill
+      #       description: "id_bill"
+      #       tests:
+      #           - not_null
+      #     - name: id_pod
+      #       description: "id_pod"
+      #       tests:
+      #           - not_null
+      #     - name: id_customer
+      #       description: "id_customer"
+      #       tests:
+      #           - dbt_expectations.expect_column_values_to_not_be_null
+      #     - name: dt_second_due
+      #       description: "dt_second_due"
+      #       tests:
+      #           - date_greaten_than:
+      #               datepart: 'year'
+      #               interval: 30
+                    #threshold_date: "'2099-12-31'"
+
+    # - name: global_payment_peru_mod
+    #   tests:
+    #     - expect_table_columns_to_match_list:
+    #         column_list: ["cdc_contract_id", "cdc_customer_id", "cdc_bill_id", "sds_status_local", "sds_status_global", "fln_fractional_payment", "cdc_fractional_payment_id", "sds_enel_company", "sds_segment", "sds_market", "sds_commodity", "sds_concept_l1", "cdc_concept_l2", "qty_amount_concept_l2", "qty_total_amount_payed", "dtc_dt_customer_payment", "dtc_dt_batch_payment", "dtc_dt_accounting", "cdc_id_collection_channel", "sds_collection_channel", "cdc_id_collection_partner", "cdc_collection_partner", "cdc_deposit_id"]
+    #   columns:
+    #       - name: cdc_contract_id
+    #         description: "cdc_contract_id"
+    #         tests:
+    #             - expect_column_values_to_be_in_type_list:
+    #                 column_type_list: [varchar(256)]
+    # - name: global_payment_chile_mod
+    #   tests:
+    #     - expect_table_columns_to_match_list:
+    #         column_list: ["cdc_contract_id", "cdc_customer_id", "cdc_bill_id", "sds_status_local", "sds_status_global", "fln_fractional_payment", "cdc_fractional_payment_id", "sds_enel_company", "sds_segment", "sds_market", "sds_commodity", "sds_concept_l1", "cdc_concept_l2", "qty_amount_concept_l2", "qty_total_amount_payed", "dtc_dt_customer_payment", "dtc_dt_batch_payment", "dtc_dt_accounting", "cdc_id_collection_channel", "sds_collection_channel", "cdc_id_collection_partner", "cdc_collection_partner", "cdc_deposit_id"]
+    #   columns:
+    #       - name: cdc_contract_id
+    #         description: "cdc_contract_id"
+    #         tests:
+    #             - expect_column_values_to_be_in_type_list:
+    #                 column_type_list: [varchar(256)]
+    # - name: global_payment_colombia_mod
+    #   tests:
+    #     - expect_table_columns_to_match_list:
+    #         column_list: ["cdc_contract_id", "cdc_customer_id", "cdc_bill_id", "sds_status_local", "sds_status_global", "fln_fractional_payment", "cdc_fractional_payment_id", "sds_enel_company", "sds_segment", "sds_market", "sds_commodity", "sds_concept_l1", "cdc_concept_l2", "qty_amount_concept_l2", "qty_total_amount_payed", "dtc_dt_customer_payment", "dtc_dt_batch_payment", "dtc_dt_accounting", "cdc_id_collection_channel", "sds_collection_channel", "cdc_id_collection_partner", "cdc_collection_partner", "cdc_deposit_id"]
+    #   columns:
+    #       - name: cdc_contract_id
+    #         description: "cdc_contract_id"
+    #         tests:
+    #             - expect_column_values_to_be_in_type_list:
+    #                 column_type_list: [varchar(256)]
+
+    #       - name: cdc_customer_id
+    #         description: "cdc_customer_id"
+    #         tests:
+    #             - not_null
+    #       - name: dtc_dt_customer_payment
+    #         description: "dtc_dt_customer_payment"
+    #         tests:
+    #             - date_greaten_than:
+    #                 datepart: 'year'
+    #                 interval: 5
+          
+      
+

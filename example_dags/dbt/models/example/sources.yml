@@ -1,0 +1,43 @@
+version: 2
+
+sources:
+  - name: global_brazil_ceara
+    tables:
+      - name: test_dbt_snapshot
+        description: "test_dbt_snapshot used to test snapshot feature"
+
+      - name: bt_global_billing_brazil_ceara
+        description: "bt_global_billing_brazil_ceara"
+        tests:
+          - expect_check_duplicates_perc:
+              group_by_cols: 'cdc_contract_id, cdc_customer_id, cdc_pod_id, cdc_bill_id'
+              thresholds: 90
+        
+
+      - name: bt_global_payment_brazil_ceara
+        tests:
+          - expect_table_columns_to_match_list:
+              column_list: ["cdc_contract_id", "cdc_customer_id", "cdc_bill_id", "sds_country", "sds_status_local", "sds_status_global", "fln_fractional_payment", "cdc_fractional_payment_id", "sds_enel_company", "sds_segment", "sds_market", "sds_commodity", "sds_concept_l1", "cdc_concept_l2", "qty_amount_concept_l2", "qty_total_amount_payed", "dtc_dt_customer_payment", "dtc_dt_batch_payment", "dtc_dt_accounting", "cdc_id_collection_channel", "sds_collection_channel", "cdc_id_collection_partner", "cdc_collection_partner", "cdc_id_deposit"]
+        columns:
+          - name: cdc_contract_id
+            description: "cdc_contract_id"
+            tests:
+                - expect_column_values_to_be_in_type_list_paolo:
+                    column_type_list: ['varchar(256)', 'character varying(256)']
+                    table_name: 'global_brazil_ceara.bt_global_payment_brazil_ceara'
+          - name: qty_amount_concept_l2
+            description: "qty_amount_concept_l2"
+            tests:
+                - expect_column_values_to_be_in_type_list_paolo:
+                    column_type_list: ['number(10,2)', 'numeric(10,2)']
+                    table_name: 'global_brazil_ceara.bt_global_payment_brazil_ceara'
+          - name: fln_fractional_payment
+            description: "fln_fractional_payment"
+            tests:
+                - expect_column_values_to_be_in_type_list_paolo:
+                    column_type_list: ['boolean']
+                    table_name: 'global_brazil_ceara.bt_global_payment_brazil_ceara'
+  - name: global_brazil_goias
+    tables:
+      - name: bt_global_billing_brazil_goias
+      

@@ -25,7 +25,7 @@ with dag:
         bash_command=f"dbt compile --profiles-dir {DBT_PROJECT_DIR} --project-dir {DBT_PROJECT_DIR}"
     )
     dbt_debug = BashOperator(
-        task_id="dbt_compile",
+        task_id="dbt_debug",
         bash_command=f"dbt debug --profiles-dir {DBT_PROJECT_DIR} --project-dir {DBT_PROJECT_DIR}"
     )
     #dbt_seed = BashOperator(

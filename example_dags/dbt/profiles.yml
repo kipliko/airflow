@@ -1,0 +1,13 @@
+customer_operation_intelligence:
+  target: dev
+  outputs:
+    dev:
+      type: redshift
+      threads: 4
+      host: latam-ap35552-dev-rshift-03-biba-1urtls384qacd.c2wp5vrq50q8.eu-central-1.redshift.amazonaws.com
+      port: 5439
+      user: admin
+      pass: ap35552123A
+      dbname: dreddevbiba
+      schema: global_brazil_ceara
+      

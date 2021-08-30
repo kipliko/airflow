@@ -10,6 +10,7 @@ config-version: 2
 profile: 'customer_operation_intelligence'
 
 log-path: /opt/airflow/logs
+modules-path: /opt/airflow/logs
 
 # These configurations specify where dbt should look for different types of files.
 # The `source-paths` config, for example, states that models in this project can be
